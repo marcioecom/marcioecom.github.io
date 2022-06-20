@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PS</title>
+
+  <style>
+    * {
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 14px;
+      color: #333;
+      background-color: #f2f2f2;
+    }
+
+    main {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    .icon {
+      max-width: 150px;
+    }
+
+    .title {
+      font-size: 2rem;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 1.1rem;
+      margin: 20px 0;
+    }
+
+    .btn {
+      margin-top: 20px;
+      text-decoration: none;
+      padding: 1.5rem 4rem;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+      cursor: pointer;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      background-color: #00dd80;
+      color: #fff;
+      animation: pulse 2s infinite;
+    }
+
+    .btn:active {
+      background-color: #04c273;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(0.8);
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+      }
+
+
+      50% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+      }
+
+      100% {
+        transform: scale(0.8);
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+      }
+    }
+
+    footer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <img class="icon" src="./shield.svg" alt="shield">
+    <h1 class="title">Tudo certo</h1>
+    <p class="subtitle">
+      Clique no botão abaixo para ser redirecionado para página solicitada!
+    </p>
+    <a class="btn" href="http://google.com" rel="noopener noreferrer">
+      Continuar
+    </a>
+  </main>
+</body>
+</html>

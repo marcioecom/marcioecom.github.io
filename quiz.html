@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz</title>
+
+  <style>
+    * {
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 14px;
+      color: #333;
+      background-color: #f2f2f2;
+    }
+
+    main {
+      height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      max-width: 800px;
+      padding: 20px;
+      margin: 0 auto;
+    }
+    
+    .wrapper {
+      background-color: #fff;
+      border-radius: 8px;
+      padding: 1rem;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .title {
+      font-size: 1.7rem;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .subtitle {
+      font-size: 1.3rem;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .quiz .quiz-option {
+      flex: 1;
+      background-color: rgb(111, 216, 5);
+      padding: 1rem;
+      text-align: center;
+      border-radius: 8px;
+      margin: 8px;
+      color: #fff;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    .quiz-option:hover {
+      transform: scale(1.02);
+    }
+
+    .progress-bar-wrapper {
+      padding: 8px;
+    }
+
+    .progress-bar {
+      display: block;
+      height: fit-content;
+      background-color: #00dd80;
+      width: 3rem;
+      max-width: 100%;
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 8px;
+      transition: all 700ms ease;
+    }
+
+    footer {
+      max-width: 800px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="wrapper">
+      <h1 class="title"></h1>
+      <p class="subtitle"></p>
+      <div class="progress-bar-wrapper">
+        <div class="progress-bar"></div>
+      </div>
+      <div class="quiz"></div>
+    </div>
+  </main>
+
+  <footer>
+    <p>
+      © 2022 - Todos os direitors reservados. Este site NÃO é endossado pelo Facebook
+      de forma alguma. FACEBOOK é uma marca registrada da FACEBOOK, Inc.
+    </p>
+    <br />
+    <p>
+      <a href="termos.html">Termos de uso</a> | <a href="privacidade.html">Política de privacidade</a>
+    </p>
+  </footer>
+
+  <script>
+    let actualQuestions = 0;
+    const questions = [
+      {
+        question: "Você está tentando perder peso?",
+        options: ["sim", "não"]
+      },
+      {
+        question: "Gostaria de descobrir a vitamina de 6 ingredientes que transformou minha vida e recuperou o meu corpo e confiança?",
+        options: ["sim", "não"]
+      },
+      {
+        question: "O vídeo a seguir possuí alguns poucos minutos, você está disposta a assistir ele até o final?",
+        options: ["sim", "não"]
+      }
+    ]
+
+    const numberOfQuestion = document.querySelector('h1.title');
+    const quizQuestion = document.querySelector('p.subtitle');
+    const progressBar = document.querySelector('div.progress-bar');
+    const quizDiv = document.querySelector('div.quiz');
+
+    function nextQuestion() {
+      moveProgressBar();
+      actualQuestions += 1;
+      if (actualQuestions === 3) {
+        return window.location.href = "https://google.com";
+      };
+      renderQuestions();
+    }
+
+    function renderQuestions() {
+      quizQuestion.innerHTML = '';
+      quizDiv.innerHTML = '';
+
+      numberOfQuestion.innerHTML = `Pergunta ${actualQuestions + 1}`;
+      quizQuestion.innerHTML = questions[actualQuestions].question;
+
+      questions[actualQuestions].options.forEach((question) => {
+        const questionItem = document.createElement("div");
+        questionItem.classList.add("quiz-option");
+        questionItem.innerText = question;
+        questionItem.addEventListener('click', nextQuestion);
+        quizDiv.appendChild(questionItem);
+      })
+    }
+
+    let progressBarWidth = 0;
+
+    function moveProgressBar() {
+      if (progressBarWidth >= 100) return;
+
+      progressBarWidth += 40;
+      progressBar.style.width = `${progressBarWidth}%`;
+    }
+
+    window.onload = () => {
+      renderQuestions();
+    }
+  </script>
+</body>
+</html>
